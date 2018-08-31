@@ -1,0 +1,28 @@
+
+{
+  "name": "VinVarsel",
+  "version": "0.1",
+  "description": "Lettere tilgang til ekspertenes mening.",
+  "content_scripts" :[
+    {
+      "matches":["https://www.vinmonopolet.no/*/*/*/*/p/*","http://www.vinmonopolet.no/*/*/*/*/p/*"],
+      "js" : ["content.js"]
+    }],
+  "permissions": ["activeTab","declarativeContent", "storage","tabs", "https://www.dn.no/smak/vinsok/*","https://www.aperitif.no/*"],
+  "options_page": "options.html",
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": true
+  },
+  "page_action": {
+    "default_icon": {
+      "128": "images/wineicon.png"},
+    "default_popup": "popup.html",
+    "default_title": "Sjekk poeng"
+  },
+  "icons": {
+    "128": "images/wineicon.png"
+  },
+
+  "manifest_version": 2
+}
