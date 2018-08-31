@@ -75,7 +75,7 @@ function load(url, callback) {
   xhr.send('');
 }
 
-
+/*
 function sendScore(layer, site, score, url){
   let message = {
         type: layer,
@@ -85,6 +85,8 @@ function sendScore(layer, site, score, url){
     }
     chrome.runtime.sendMessage(message);
 }
+*/
+
 
 function checkValue(value){
   var values = ['0','1','2','3','4','5','6','7','8','9']
