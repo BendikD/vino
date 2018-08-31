@@ -21,9 +21,7 @@ if(dnScore != ''){
 
   updateScores('dn-link', dnScore, dnUrl, 'images/SmakLogo.png')
 }
-
 else {
-//if(dnScore == '' && aperitifScore ==''){
   noScoreFound();
 }
 
