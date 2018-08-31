@@ -15,11 +15,16 @@ var dnUrl = background.dnUrl;
 
 if(aperitifScore != ''){
 
-  updateScores('ap', aperitifScore, aperitifUrl, 'images/aperitifFull.png')
+  updateScores('aperitif-link', aperitifScore, aperitifUrl, 'images/aperitifFull.png')
 }
 if(dnScore != ''){
 
-  updateScores('dn', dnScore, dnUrl, 'images/SmakLogo.png')
+  updateScores('dn-link', dnScore, dnUrl, 'images/SmakLogo.png')
+}
+
+else {
+//if(dnScore == '' && aperitifScore ==''){
+  noScoreFound();
 }
 
 
@@ -28,28 +33,50 @@ function updateScores( id, score, url, bilde){
 
   var p = document.createElement('p');
 
+  //create link congfig
   var a = document.createElement('a');
   a.setAttribute('id', id);
-  a.setAttribute('href', "https://www.vg.no/");
+  a.setAttribute('href', url);
   a.setAttribute('targets', '_blank');
+  //a.setAttribute('onclick', 'myHandle(this)');
 
-  var node = document.createTextNode(' : ' + score);
+
+  //create image
+  var img = document.createElement('img');
+  img.setAttribute('src',  bilde);
+
+  //put img in link
+  a.appendChild(img);
+
+  //create score element
+  var node = document.createElement('object')
+  node.innerHTML = ' : ' + score;
+  a.appendChild(node);
+  //create scale
   var scale = document.createElement('var');
   scale.innerHTML = '/100';
 
-  var img = document.createElement('img');
-  img.setAttribute('src',  bilde);
-  a.appendChild(img);
-
+  //append above elements in p
   p.appendChild(a);
-  p.appendChild(node);
+  //p.appendChild(node);
   p.appendChild(scale);
 
+  //append p in score list
+  main = document.getElementById('Scores');
+  main.appendChild(p);
+}
+
+function noScoreFound(){
+  console.log('No score');
+  var p = document.createElement('var')
+
+  p.innerHTML = 'Mangler score'
+
+  //append p in score list
   main = document.getElementById('Scores');
   main.appendChild(p);
 
 }
-
 
 /*
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
