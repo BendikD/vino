@@ -14,40 +14,44 @@ var dnScore = background.dnScore;
 var dnUrl = background.dnUrl;
 
 if(aperitifScore != ''){
-    updateScores('aperitifScoreParagraph', aperitifScore, 'aperitif-link', aperitifUrl);
+
+  updateScores('ap', aperitifScore, aperitifUrl, 'images/aperitifFull.png')
 }
 if(dnScore != ''){
-  updateScores('dnScoreParagraph', dnScore, 'dn-link', dnUrl);
 
+  updateScores('dn', dnScore, dnUrl, 'images/SmakLogo.png')
 }
 
 
-function updateScores(id, score, linkId, url){
 
-  Selement = document.getElementById(id);
-  Selement.innerHTML = score;
+function updateScores( id, score, url, bilde){
 
-  Lelement = document.getElementById(linkId);
-  Lelement.href = url;
-  Lelement.target = "_blank";
+  var p = document.createElement('p');
+
+  var a = document.createElement('a');
+  a.setAttribute('id', id);
+  a.setAttribute('href', "https://www.vg.no/");
+  a.setAttribute('targets', '_blank');
+
+  var node = document.createTextNode(' : ' + score);
+  var scale = document.createElement('var');
+  scale.innerHTML = '/100';
+
+  var img = document.createElement('img');
+  img.setAttribute('src',  bilde);
+  a.appendChild(img);
+
+  p.appendChild(a);
+  p.appendChild(node);
+  p.appendChild(scale);
+
+  main = document.getElementById('Scores');
+  main.appendChild(p);
+
 }
+
 
 /*
-function updateScores(id, score, linkId, url, bilde){
-
-  var p = document.createElement("p");
-  p.appendChild(document.createElement("a").href)
-
-
-  var element = document.getElementById("Scores");
-  element.appendChild(p)
-
-
-
-}
-
-
-
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
 
     if (message.type === 'popup') {
@@ -58,13 +62,4 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
     }
 });
 
-//updateScores('ap', aperitifUrl, aperitifScore);
-//updateScores('dn', dnUrl, dnScore);
-
-function updateScores(message){
-  element = document.getElementById(message.author);
-  element.innerHTML= message.poeng;
-  element.href = message.link;
-  element.target = "_blank";
-}
 */

@@ -52,8 +52,7 @@ function addScores(){
   console.log(DNscore);
 
   //charistics.appendChild(DNscore);
-  title.appendChild(DNscore);
-  alert(li.id);
+
   console.log(charistics)
 }
 */
