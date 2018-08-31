@@ -32,7 +32,7 @@ function updateScores(id, score, linkId, url){
   Lelement.target = "_blank";
 }
 
-
+/*
 function updateScores(id, score, linkId, url, bilde){
 
   var p = document.createElement("p");
@@ -47,7 +47,7 @@ function updateScores(id, score, linkId, url, bilde){
 }
 
 
-/*
+
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
 
     if (message.type === 'popup') {

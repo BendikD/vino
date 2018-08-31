@@ -2,12 +2,15 @@ console.log("Extention running")
 
 chrome.runtime.sendMessage({type:'showPageAction'});
 
+
+//fetches the productnumber from url, which is the last section of the url on the vinmonopolet site.
 function getVarenummer(){
     var url = window.location.pathname.split('/');
     var varenummer = url[url.length- 1];
     return varenummer;
 }
 
+//sends the productnumber to the backgroundscript
 function sendVarenummer( varenummer ){
   let message = {
         type: 'prodNum',
@@ -15,6 +18,8 @@ function sendVarenummer( varenummer ){
     }
     chrome.runtime.sendMessage(message);
 }
+
+//inits
 sendVarenummer(getVarenummer());
 
 
@@ -52,4 +57,3 @@ function addScores(){
   console.log(charistics)
 }
 */
-//skal ikonene ligge lokalt??
