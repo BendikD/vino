@@ -22,8 +22,18 @@ function sendVarenummer( varenummer ){
 //inits
 sendVarenummer(getVarenummer());
 
+insertionTest();
 
+function insertionTest(){
+  var title = document.getElementsByClassName('product__hgroup');
 
+  console.log(title);
+
+   var test = document.createElement('p')
+   test.innerHTML = 'LOL HEHEH'
+
+   title.appendChild(test)
+}
 
 //Motta scores fra background script
 

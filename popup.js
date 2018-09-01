@@ -49,14 +49,14 @@ function updateScores( id, score, url, bilde){
   //create score element
   var node = document.createElement('object')
   node.innerHTML = ' : ' + score;
-  a.appendChild(node);
+  
   //create scale
   var scale = document.createElement('var');
   scale.innerHTML = '/100';
 
   //append above elements in p
   p.appendChild(a);
-  //p.appendChild(node);
+  p.appendChild(node);
   p.appendChild(scale);
 
   //append p in score list
