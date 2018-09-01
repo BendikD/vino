@@ -2,12 +2,15 @@ console.log("Extention running")
 
 chrome.runtime.sendMessage({type:'showPageAction'});
 
+
+//fetches the productnumber from url, which is the last section of the url on the vinmonopolet site.
 function getVarenummer(){
     var url = window.location.pathname.split('/');
     var varenummer = url[url.length- 1];
     return varenummer;
 }
 
+//sends the productnumber to the backgroundscript
 function sendVarenummer( varenummer ){
   let message = {
         type: 'prodNum',
@@ -15,10 +18,22 @@ function sendVarenummer( varenummer ){
     }
     chrome.runtime.sendMessage(message);
 }
+
+//inits
 sendVarenummer(getVarenummer());
 
+//insertionTest();
 
+function insertionTest(){
+  var title = document.getElementsByClassName('product__hgroup');
 
+  console.log(title);
+
+   var test = document.createElement('p')
+   test.innerHTML = 'LOL HEHEH'
+
+   title.appendChild(test)
+}
 
 //Motta scores fra background script
 
@@ -47,9 +62,7 @@ function addScores(){
   console.log(DNscore);
 
   //charistics.appendChild(DNscore);
-  title.appendChild(DNscore);
-  alert(li.id);
+
   console.log(charistics)
 }
 */
-//skal ikonene ligge lokalt??

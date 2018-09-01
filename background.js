@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file
 
-
+//gets the prodnum and checks runs the check score function
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
     if (message.type === 'prodNum') {
         checkScore(message);
@@ -16,12 +16,15 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
 });
 
 
+//the score values and urls for the popup to access
 var dnScore = '';
 var aperitifScore = '';
 
 var aperitifUrl ='';
 var dnUrl = '';
 
+
+//Creates a url to different databases based on the prodnum, and runs it in the load function
 function checkScore(request){
    let varenummer = request.text;
    console.log(varenummer)
@@ -32,11 +35,7 @@ function checkScore(request){
    load(dnUrl, getScoreDN);
   };
 
-
-//Try to get value from the string XML response
-
-// TODO: Write exceptions for when the value is not correct.
-
+//extracts the score from the apertif search site.
 function getScoreApertif( site ){
   scorePos = site.search('rating-points') + 12;
   score = site[scorePos+3] + site[scorePos+4];
@@ -50,6 +49,7 @@ function getScoreApertif( site ){
   console.log(aperitifScore);
 }
 
+//Used as a function to extract the score from the SMAK database
 function getScoreDN( site ){
   scorePos = site.search('Poeng:') + 13;
   score = site[scorePos + 2] + site[scorePos + 3];
@@ -63,6 +63,7 @@ function getScoreDN( site ){
   console.log(dnScore);
 }
 
+//load function that gets string format of the input url, and runs string in callbackfunction
 function load(url, callback) {
   var xhr = new XMLHttpRequest();
 
@@ -75,6 +76,18 @@ function load(url, callback) {
   xhr.send('');
 }
 
+//checks if the score is valid number.
+function checkValue(value){
+  var values = ['0','1','2','3','4','5','6','7','8','9']
+  if(values.includes(value)){
+    return true;
+  }
+  else{
+  return false;
+  }
+}
+
+
 /*
 function sendScore(layer, site, score, url){
   let message = {
@@ -86,14 +99,3 @@ function sendScore(layer, site, score, url){
     chrome.runtime.sendMessage(message);
 }
 */
-
-
-function checkValue(value){
-  var values = ['0','1','2','3','4','5','6','7','8','9']
-  if(values.includes(value)){
-    return true;
-  }
-  else{
-  return false;
-  }
-}

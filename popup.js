@@ -14,38 +14,67 @@ var dnScore = background.dnScore;
 var dnUrl = background.dnUrl;
 
 if(aperitifScore != ''){
-    updateScores('aperitifScoreParagraph', aperitifScore, 'aperitif-link', aperitifUrl);
+
+  updateScores('aperitif-link', aperitifScore, aperitifUrl, 'images/aperitifFull.png')
 }
 if(dnScore != ''){
-  updateScores('dnScoreParagraph', dnScore, 'dn-link', dnUrl);
 
+  updateScores('dn-link', dnScore, dnUrl, 'images/SmakLogo.png')
+}
+else {
+  noScoreFound();
 }
 
 
-function updateScores(id, score, linkId, url){
 
-  Selement = document.getElementById(id);
-  Selement.innerHTML = score;
+function updateScores( id, score, url, bilde){
 
-  Lelement = document.getElementById(linkId);
-  Lelement.href = url;
-  Lelement.target = "_blank";
+  var p = document.createElement('p');
+
+  //create link congfig
+  var a = document.createElement('a');
+  a.setAttribute('id', id);
+  a.setAttribute('href', url);
+  a.setAttribute('targets', '_blank');
+  //a.setAttribute('onclick', 'myHandle(this)');
+
+
+  //create image
+  var img = document.createElement('img');
+  img.setAttribute('src',  bilde);
+
+  //put img in link
+  a.appendChild(img);
+
+  //create score element
+  var node = document.createElement('object')
+  node.innerHTML = ' : ' + score;
+  
+  //create scale
+  var scale = document.createElement('var');
+  scale.innerHTML = '/100';
+
+  //append above elements in p
+  p.appendChild(a);
+  p.appendChild(node);
+  p.appendChild(scale);
+
+  //append p in score list
+  main = document.getElementById('Scores');
+  main.appendChild(p);
 }
 
+function noScoreFound(){
+  console.log('No score');
+  var p = document.createElement('var')
 
-function updateScores(id, score, linkId, url, bilde){
+  p.innerHTML = 'Mangler score'
 
-  var p = document.createElement("p");
-  p.appendChild(document.createElement("a").href)
-
-
-  var element = document.getElementById("Scores");
-  element.appendChild(p)
-
-
+  //append p in score list
+  main = document.getElementById('Scores');
+  main.appendChild(p);
 
 }
-
 
 /*
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
@@ -58,13 +87,4 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
     }
 });
 
-//updateScores('ap', aperitifUrl, aperitifScore);
-//updateScores('dn', dnUrl, dnScore);
-
-function updateScores(message){
-  element = document.getElementById(message.author);
-  element.innerHTML= message.poeng;
-  element.href = message.link;
-  element.target = "_blank";
-}
 */
