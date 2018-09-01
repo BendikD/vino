@@ -22,7 +22,7 @@ function sendVarenummer( varenummer ){
 //inits
 sendVarenummer(getVarenummer());
 
-insertionTest();
+//insertionTest();
 
 function insertionTest(){
   var title = document.getElementsByClassName('product__hgroup');
