@@ -5,7 +5,7 @@
 //'use strict';
 
 console.log('Popup running');
-
+/*
 var background = chrome.extension.getBackgroundPage()
 
 var aperitifScore = background.aperitifScore;
@@ -49,7 +49,7 @@ function updateScores( id, score, url, bilde){
   //create score element
   var node = document.createElement('object')
   node.innerHTML = ' : ' + score;
-  
+
   //create scale
   var scale = document.createElement('var');
   scale.innerHTML = '/100';
