@@ -1,13 +1,17 @@
 
 {
   "name": "Vino",
-  "version": "0.2",
+  "version": "0.3",
   "description": "Lettere tilgang til ekspertenes mening.",
   "content_scripts" :[
     {
       "matches":["https://www.vinmonopolet.no/*/*/*/*/p/*","http://www.vinmonopolet.no/*/*/*/*/p/*"],
       "js" : ["content.js"]
-    }],
+    },
+    {
+      "matches": ["https://www.vinmonopolet.no/vmp/search/*","http://www.vinmonopolet.no/vmp/search/*"],
+      "js" : ["searchContent.js"]
+      }],
   "permissions": ["activeTab", "tabs", "https://www.dn.no/smak/vinsok/*","https://www.aperitif.no/*"],
   "options_page": "options.html",
   "background": {

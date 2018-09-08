@@ -90,7 +90,6 @@ function checkValue(value){
   }
 }
 
-
 /*
 function sendScore(layer, site, score, url){
   let message = {
