@@ -75,8 +75,6 @@ function getScoreApertif( site , url){
   scorePos = site.search('rating-points') + 12;
   score = site[scorePos+3] + site[scorePos+4];
   if(checkValue(score[0])){
-    //aperitifScore = score;
-    console.log(url);
     insertScore('ap', score , url , 'https://static.gfx.no/images/main/aperitif.png')
   }
   else {

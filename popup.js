@@ -4,7 +4,7 @@
 
 //'use strict';
 
-console.log('Popup running');
+//console.log('Popup running');
 /*
 var background = chrome.extension.getBackgroundPage()
 
