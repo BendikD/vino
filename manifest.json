@@ -1,7 +1,7 @@
 
 {
   "name": "Vino",
-  "version": "0.1",
+  "version": "0.2",
   "description": "Lettere tilgang til ekspertenes mening.",
   "content_scripts" :[
     {
