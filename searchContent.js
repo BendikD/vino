@@ -1,5 +1,10 @@
 console.log("searchContent running ");
 
+var dnLogo = 'https://www.dn.no/skins/dn/gfx/SmakLogo.png';
+var aperitifLogo = 'https://static.gfx.no/images/main/aperitif.png';
+
+console.log(aperitifLogo);
+
 
 init();
 
@@ -70,7 +75,7 @@ function getScoreApertif( site , url, produkt){
   scorePos = site.search('rating-points') + 12;
   score = site[scorePos+3] + site[scorePos+4];
   if(checkValue(score[0])){
-    insertScore(produkt , score , url , 'https://static.gfx.no/images/main/aperitif.png')
+    insertScore(produkt , score , url , aperitifLogo )
   }
   else {
     noScoreFound();
@@ -85,7 +90,7 @@ function getScoreDN( site , url, produkt){
   if(checkValue(score[0])){
     //dnScore = score;
 
-    insertScore(produkt, score, url, 'https://www.dn.no/skins/dn/gfx/SmakLogo.png')
+    insertScore(produkt, score, url, dnLogo)
   }
   else {
     dnUrl='';
