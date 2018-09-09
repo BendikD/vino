@@ -1,7 +1,7 @@
 
 {
   "name": "Vino",
-  "version": "0.3",
+  "version": "0.4",
   "description": "Lettere tilgang til ekspertenes mening.",
   "content_scripts" :[
     {
@@ -9,7 +9,12 @@
       "js" : ["content.js"]
     },
     {
-      "matches": ["https://www.vinmonopolet.no/vmp/search/*","http://www.vinmonopolet.no/vmp/search/*"],
+      "matches": ["https://www.vinmonopolet.no/vmp/search/*",
+                  "http://www.vinmonopolet.no/vmp/search/*",
+                  "https://www.vinmonopolet.no/search*",
+                  "http://www.vinmonopolet.no/search*",
+                  "https://www.vinmonopolet.no/vmp/Nettbutikk-kategorier/*",
+                  "http://www.vinmonopolet.no/vmp/Nettbutikk-kategorier/*"],
       "js" : ["searchContent.js"]
       }],
   "permissions": ["activeTab", "tabs", "https://www.dn.no/smak/vinsok/*","https://www.aperitif.no/*"],
