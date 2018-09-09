@@ -13,7 +13,7 @@ function init(){
   var i;
   console.log(produktliste);
   console.log(produktliste.length);
-  for(i = 0; i < produktliste.length + 1; i++){
+  for(i = 0; i < produktliste.length; i++){
     var produkt = produktliste.item(i);
     console.log(produkt);
     varenummer = produkt.getElementsByClassName('product-item__tool-favorite js-favorite').item(0).dataset.productCode;
