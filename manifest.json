@@ -2,7 +2,7 @@
 {
   "name": "Vino",
   "version": "0.5",
-  "description": "Lettere tilgang til ekspertenes mening.",
+  "description": "Se ekspertenes mening rett inn i vinmonopolet.no.",
   "content_scripts" :[
     {
       "matches":["https://www.vinmonopolet.no/*/*/*/*/p/*","http://www.vinmonopolet.no/*/*/*/*/p/*"],
