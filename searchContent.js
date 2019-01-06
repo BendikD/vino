@@ -7,7 +7,7 @@ console.log(aperitifLogo);
 
 
 init();
-//reload();
+reload();
 
 function init(){
   var produktliste = document.getElementsByClassName("product-list product-list--grid-view").item(0).getElementsByClassName("product-item");
@@ -133,9 +133,9 @@ function noScoreFound(){
 
 //Reload the body element
 function reload(){
-    var container = document.getElementById("page");
-    var content = container.innerHTML;
-    container.innerHTML= content;
+    
+    var container = document.getElementById("page").style.padding;
+
 
    //this line is to watch the result in console , you can remove it later
     console.log("Refreshed");
