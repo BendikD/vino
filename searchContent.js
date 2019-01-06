@@ -25,9 +25,12 @@ function init(){
 var testElement = document.getElementsByClassName("product-list product-list--grid-view").item(0).getElementsByClassName("product-item").item(0);
 
 function insertScore(produkt, score, url, bilde){
-  produkt = produkt.getElementsByClassName("product-item__image").item(0);
+  //produkt = produkt.getElementsByClassName("product-item__image").item(0);
 
-  var e = document.createElement('li');
+  produkt = produkt.getElementsByClassName("product-item__inner-container").item(0);
+
+
+  var e = document.createElement('div');
   //e.setAttribute('id', id);
   e.setAttribute('style', 'text-align:center;')
 
@@ -52,7 +55,7 @@ function insertScore(produkt, score, url, bilde){
   d.innerHTML = score + '/100'
   e.appendChild(d);
 
-  produkt.appendChild(e)
+  produkt.insertBefore(e, produkt.children[1]);
   console.log(produkt);
 
 }

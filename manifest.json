@@ -18,7 +18,7 @@
                   "http://www.vinmonopolet.no/wishlist*"],
       "js" : ["searchContent.js"]
       }],
-  "permissions": ["activeTab", "https://www.dn.no/smak/vinsok/*","https://www.aperitif.no/*"],
+  "permissions": ["activeTab", "https://www.dn.no/", "https://www.aperitif.no/"],
   "options_page": "options.html",
   "background": {
     "scripts": ["background.js"],
