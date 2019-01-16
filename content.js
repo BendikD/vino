@@ -27,9 +27,9 @@ function sendVarenummer( varenummer ){
 
 function insertScore(id, score, url, bilde){
 
-  var cList = document.getElementsByClassName('list-unstyled product-characteristics').item(0);
+  var cList = document.getElementsByClassName('product__image-container').item(0);
 
-  var e = document.createElement('li');
+  var e = document.createElement('ul');
   e.setAttribute('id', id);
   e.setAttribute('style', 'text-align:center;')
 
