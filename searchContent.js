@@ -21,6 +21,8 @@ function init(){
     console.log(varenummer);
     checkScore(varenummer, produkt);
   }
+  //to fix dug- where the graphic overlaps due to the html injection
+  zoom();
 
 }
 
@@ -133,10 +135,15 @@ function noScoreFound(){
 
 //Reload the body element
 function reload(){
-    
+
     var container = document.getElementById("page").style.padding;
 
 
    //this line is to watch the result in console , you can remove it later
     console.log("Refreshed");
+
 }
+
+function zoom() {
+            document.body.style.zoom = "101%"
+        }

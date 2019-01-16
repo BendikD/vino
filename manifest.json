@@ -1,7 +1,7 @@
 
 {
   "name": "Vino",
-  "version": "0.5",
+  "version": "0.6",
   "description": "Se ekspertenes mening rett inn i vinmonopolet.no.",
   "content_scripts" :[
     {
@@ -13,9 +13,11 @@
                   "https://www.vinmonopolet.no/search*",
                   "http://www.vinmonopolet.no/search*",
                   "https://www.vinmonopolet.no/vmp/search*",
+                  "http://www.vinmonopolet.no/vmp/search*",
                   "https://www.vinmonopolet.no/vmp/Nettbutikk-kategorier/*",
                   "http://www.vinmonopolet.no/vmp/Nettbutikk-kategorier/*",
-                  "http://www.vinmonopolet.no/vmp/search*",
+                  "https://www.vinmonopolet.no/Nettbutikk-kategorier/*",
+                  "http://www.vinmonopolet.no/Nettbutikk-kategorier/*",
                   "https://www.vinmonopolet.no/wishlist*",
                   "http://www.vinmonopolet.no/wishlist*"],
       "js" : ["searchContent.js"]
