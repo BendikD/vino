@@ -7,6 +7,7 @@ console.log(aperitifLogo);
 
 
 init();
+reload();
 
 function init(){
   var produktliste = document.getElementsByClassName("product-list product-list--grid-view").item(0).getElementsByClassName("product-item");
@@ -20,15 +21,17 @@ function init(){
     console.log(varenummer);
     checkScore(varenummer, produkt);
   }
+
 }
 
 var testElement = document.getElementsByClassName("product-list product-list--grid-view").item(0).getElementsByClassName("product-item").item(0);
 
 function insertScore(produkt, score, url, bilde){
-  produkt = produkt.getElementsByClassName("product-item__image").item(0);
 
-  var e = document.createElement('li');
-  //e.setAttribute('id', id);
+  produkt = produkt.getElementsByClassName("product-item__inner-container").item(0);
+
+
+  var e = document.createElement('div');
   e.setAttribute('style', 'text-align:center;')
 
 
@@ -52,7 +55,7 @@ function insertScore(produkt, score, url, bilde){
   d.innerHTML = score + '/100'
   e.appendChild(d);
 
-  produkt.appendChild(e)
+  produkt.insertBefore(e, produkt.children[1]);
   console.log(produkt);
 
 }
@@ -125,4 +128,15 @@ function checkValue(value){
 
 function noScoreFound(){
   console.log('no score found');
+}
+
+
+//Reload the body element
+function reload(){
+    
+    var container = document.getElementById("page").style.padding;
+
+
+   //this line is to watch the result in console , you can remove it later
+    console.log("Refreshed");
 }
