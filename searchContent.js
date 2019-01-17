@@ -22,7 +22,7 @@ function init(){
     checkScore(varenummer, produkt);
   }
   //to fix dug- where the graphic overlaps due to the html injection
-  zoom();
+  document.addEventListener("DOMContentLoaded", zoom());
 
 }
 
