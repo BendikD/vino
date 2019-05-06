@@ -3,16 +3,15 @@ console.log("searchContent running ");
 var dnLogo = 'https://www.dn.no/skins/dn/gfx/SmakLogo.png';
 var aperitifLogo = 'https://static.gfx.no/images/main/aperitif.png';
 
-console.log(aperitifLogo);
+//console.log(aperitifLogo);
 
 
 init();
-reload();
 
 function init(){
   var produktliste = document.getElementsByClassName("product-list product-list--grid-view").item(0).getElementsByClassName("product-item");
   var i;
-  console.log(produktliste);
+  //console.log(produktliste);
   console.log(produktliste.length);
   for(i = 0; i < produktliste.length; i++){
     var produkt = produktliste.item(i);
@@ -20,9 +19,14 @@ function init(){
     varenummer = produkt.getElementsByClassName('product-item__tool-favorite js-favorite').item(0).dataset.productCode;
     console.log(varenummer);
     checkScore(varenummer, produkt);
+    if(i == produktliste.length - 1){
+      zoom();
+    }
   }
   //to fix dug- where the graphic overlaps due to the html injection
-  document.addEventListener("DOMContentLoaded", zoom());
+  //document.addEventListener("DOMContentLoaded", zoom());
+
+
 
 }
 
@@ -58,7 +62,7 @@ function insertScore(produkt, score, url, bilde){
   e.appendChild(d);
 
   produkt.insertBefore(e, produkt.children[1]);
-  console.log(produkt);
+  //console.log(produkt);
 
 }
 
@@ -129,21 +133,24 @@ function checkValue(value){
 }
 
 function noScoreFound(){
-  console.log('no score found');
+  console.log('Mangler Rating');
 }
 
 
-//Reload the body element
-function reload(){
-
-    var container = document.getElementById("page").style.padding;
-
-
-   //this line is to watch the result in console , you can remove it later
-    console.log("Refreshed");
-
-}
 
 function zoom() {
-            document.body.style.zoom = "101%"
+  console.log('*pover aa fikse displaybugs*');
+        if(document.body.style.zoom != "101%"){
+            document.body.style.zoom = "101%"}
+        else{
+          document.body.style.zoom = "100%"
         }
+}
+
+//document.addEventListener("DOMContentLoaded", zoom());
+
+//if (document.readyState === "loading") {  // Loading hasn't finished yet
+//document.addEventListener("DOMContentLoaded", zoom());
+//} else {  // `DOMContentLoaded` has already fired
+//zoom();
+//}
