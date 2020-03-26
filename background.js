@@ -20,61 +20,69 @@ chrome.runtime.onMessage.addListener(function(message) {
 });
 
 
+//Creates a array of numbers
+function range(size, startAt = 0) {
+    return [...Array(size).keys()].map(i => i + startAt);
+}
+
+
 //Creates a url to different databases based on the prodnum, and runs it in the load function
 function checkScore(varenummer){
    aperitifUrl = 'https://www.aperitif.no/pollisten?minPrice=&maxPrice=&q='+varenummer+'&sortBy=editorial_rating&offset=0'
-   load(aperitifUrl , getScoreApertif);
+   load(aperitifUrl , getScoreApertif, varenummer);
 
    dnUrl = 'https://www.dn.no/smak/vinsok/?q='+varenummer+'&fromDate=&toDate=&useFromToDate=false&sort=reld&dateField=&facets=%7Bcm%7Dwine_available_cust%3Awaf%7Cavailable&_facets=on'
-   load(dnUrl, getScoreDN);
+   load(dnUrl, getScoreDN, varenummer);
 
   };
 
 //extracts the score from the apertif search site.
-function getScoreApertif( site , url){
-  scorePos = site.search('rating-points') + 12;
-  score = site[scorePos+3] + site[scorePos+4];
-  if(checkValue(score[0])){
-    //insertScore('ap', score , url , 'https://static.gfx.no/images/main/aperitif.png')
-    sendScore('ap', url, score)
-  }
-  else {
-    noScoreFound();
-    sendscore('ap','','no score found');
+function getScoreApertif( site , url, vareNr){
+  scoreElement = site.querySelector("#main > form > div > section.item-column.column.three-fourths > div.item-list > div > a > div > span > span.rating-points");
+  score = scoreElement.innerText;
+
+  try{
+    if(scoreElement == null) throw ("Ingen Score AP");
+    if(!range(101).includes(Number(score))) throw ("AP Score error")
+  } catch(err) {
+    console.log(err);
+
   }
 
-}
+     sendScore('ap', url, score, vareNr)
+
+  }
+
 
 //Used as a function to extract the score from the SMAK database
-function getScoreDN( site , url){
-  scorePos = site.search('Poeng:') + 13;
-  score = site[scorePos + 2] + site[scorePos + 3];
-  if(checkValue(score[0])){
-    //dnScore = score;
+function getScoreDN( site , url, vareNr){
+  site.querySelector("#vin-search-app > div.vrs-article__body > div > div > div.vrs-content-block__vin-resultbody > table > tbody > tr > td:nth-child(5)")
+  scoreElement = site.querySelector("#vin-search-app > div.vrs-article__body > div > div > div.vrs-content-block__vin-resultbody > table > tbody > tr > td:nth-child(5)");
+  score = scoreElement.innerText;
 
-    //insertScore('dn', score, url, 'https://www.dn.no/skins/dn/gfx/SmakLogo.png')
+  try{
+    if(scoreElement == null) throw ("Ingen Score DN");
+    if(!range(101).includes(Number(score))) throw ("DN Score error")
 
-    sendScore('dn', url, score);
+  } catch(err) {
+    console.log(err);
+    return;
   }
-  else {
-
-    noScoreFound();
-    sendScore('dn','', 'no score found');
+     sendScore('dn', url, score, vareNr)
   }
-
-}
 
 //load function that gets string format of the input url, and runs string in callbackfunction
-function load(url, callback) {
+function load(url, callback, vareNr) {
   var xhr = new XMLHttpRequest();
 
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4) {
-      callback(xhr.response, url);
+      callback(xhr.response, url, vareNr);
     }
   }
   xhr.open('GET', url, true);
-  xhr.send('');
+  xhr.responseType = "document";
+  xhr.send();
 }
 
 //checks if the score is valid number.
@@ -88,12 +96,13 @@ function checkValue(value){
   }
 }
 
-function sendScore(db, url, score){
+function sendScore(db, url, score, vareNr){
   let message = {
     type: 'score',
     db: db,
     url: url,
-    score: score
+    score: score,
+    vareNr: vareNr
   }
 
 
@@ -105,8 +114,4 @@ console.log('sending score to content: ' + score);
 
 
 
-}
-
-function noScoreFound(){
-  console.log('No score');
 }

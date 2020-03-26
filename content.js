@@ -23,7 +23,7 @@ function sendVarenummer( varenummer ){
 }
 
 
-
+//Lytter etter score meldinger og sender videre til insert score
 chrome.runtime.onMessage.addListener(function(message) {
     if(message.type === 'score') {
         insertScore(message.db, message.score, message.url);
@@ -67,7 +67,7 @@ function insertScore(db, score, url){
   var d = document.createElement('div');
   d.setAttribute('class', 'pie');
   d.setAttribute('style', 'font-family: Playfair Display; font-size: 14pt;');
-  d.innerHTML = score + '/100'
+  d.innerText = score + '/100'
   e.appendChild(d);
 
   cList.appendChild(e);
